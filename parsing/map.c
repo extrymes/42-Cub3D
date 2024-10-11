@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimao <msimao@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:32:56 by msimao            #+#    #+#             */
-/*   Updated: 2024/10/09 11:21:13 by msimao           ###   ########.fr       */
+/*   Updated: 2024/10/11 14:42:58 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,5 @@ void	check_map(char *file, t_data *data)
 	data->map->fd = open(file, O_RDONLY);
 	if (data->map->fd < 0)
 		throw_error(data, "cannot open file");
-	parse_design(data->map->fd, data);
+	parse_design(data);
 }

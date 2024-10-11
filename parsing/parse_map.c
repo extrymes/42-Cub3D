@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 11:40:36 by msimao            #+#    #+#             */
-/*   Updated: 2024/10/09 12:41:35 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/11 15:37:43 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ static void	flood_fill(t_map *map, int x, int y, t_data *data)
 
 static void	set_player(t_data *data, char c, int y, int x)
 {
-	data->player->pos_y = y;
-	data->player->pos_x = x;
+	data->player->pos_y = y + 0.5;
+	data->player->pos_x = x + 0.5;
 	data->map->player = data->map->map[y][x];
 	if (c == 'N')
 		data->player->dir_y = -1.0;
@@ -56,7 +56,7 @@ static void	set_player(t_data *data, char c, int y, int x)
 		data->player->dir_x = 1.0;
 	else if (c == 'W')
 		data->player->dir_x = -1.0;
-	data->map->nb++;
+	data->map->start_count++;
 }
 void	parse_map(t_data *data)
 {
@@ -77,7 +77,7 @@ void	parse_map(t_data *data)
 				throw_error(data, "invalid char");
 		}
 	}
-	if (data->map->nb != 1)
+	if (data->map->start_count != 1)
 		throw_error(data, "number player invalid");
 	copy_map(data);
 	flood_fill(data->map, data->player->pos_x, data->player->pos_y, data);

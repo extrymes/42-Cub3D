@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_design.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimao <msimao@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 09:49:19 by msimao            #+#    #+#             */
-/*   Updated: 2024/10/09 11:21:26 by msimao           ###   ########.fr       */
+/*   Updated: 2024/10/11 14:59:45 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static char	*save_wall(char *str, t_data *data, char *filename)
 	if (!file)
 		error_gnl("Malloc fail", file, data);
 	check_file(file, data);
-	return (data->map->done++, file);
+	return (file);
 }
 
 static int	save_rgb(char *str, t_data *data, int rgb)
@@ -71,10 +71,10 @@ static int	save_rgb(char *str, t_data *data, int rgb)
 	if (res < 0)
 		error_gnl("Invalid color", str, data);
 	free(str);
-	return (data->map->done++, res);
+	return (res);
 }
 
-static void	display_info(char *str, t_data *data)
+static int	display_info(char *str, t_data *data)
 {
 	int	i;
 
@@ -82,39 +82,40 @@ static void	display_info(char *str, t_data *data)
 	while (str[i] && ft_isspace(str[i]))
 		i++;
 	if (str[i] && str[i] == 'N'  && str[i + 1] && str[i + 1] == 'O')
-		data->map->no = save_wall(str, data, data->map->no);
+		return (data->map->wall_no = save_wall(str, data, data->map->wall_no), 1);
 	else if (str[i] && str[i] == 'S'  && str[i + 1] && str[i + 1] == 'O')
-		data->map->so = save_wall(str, data, data->map->so);
+		return (data->map->wall_so = save_wall(str, data, data->map->wall_so), 1);
 	else if (str[i] && str[i] == 'W'  && str[i + 1] && str[i + 1] == 'E')
-		data->map->we = save_wall(str, data, data->map->we);
+		return (data->map->wall_we = save_wall(str, data, data->map->wall_we), 1);
 	else if (str[i] && str[i] == 'E'  && str[i + 1] && str[i + 1] == 'A')
-		data->map->ea = save_wall(str, data, data->map->ea);
+		return (data->map->wall_ea = save_wall(str, data, data->map->wall_ea), 1);
 	else if (str[i] && str[i] == 'F')
-		data->map->f = save_rgb(str, data, data->map->f);
+		return (data->map->floor = save_rgb(str, data, data->map->floor), 1);
 	else if (str[i] && str[i] == 'C')
-		data->map->c = save_rgb(str, data, data->map->c);
+		return (data->map->ceiling = save_rgb(str, data, data->map->ceiling), 1);
 	else if (ft_isprint(str[i]))
 		error_gnl("Unexpected character", str, data);
-	else
-		free(str);
+	return (free(str), 0);
 }
 
-void	parse_design(int fd, t_data *data)
+void	parse_design(t_data *data)
 {
 	char	*str;
+	int		nbr_design;
 
+	nbr_design = 0;
 	while (1)
 	{
-		str = get_next_line(fd);
+		str = get_next_line(data->map->fd);
 		if (str == NULL)
 			break ;
 		remove_nl(str);
-		if (data->map->done < 6)
-			display_info(str, data);
+		if (nbr_design < 6)
+			nbr_design += display_info(str, data);
 		else
 			save_map(str, data->map);
 	}
-	close(fd);
+	close(data->map->fd);
 	parse_map(data);
 	free_split(data->map->map_cp);
 }
