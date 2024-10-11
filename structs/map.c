@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msimao <msimao@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 10:47:37 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/09 11:20:52 by msimao           ###   ########.fr       */
+/*   Updated: 2024/10/11 15:00:40 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,14 @@ t_map	*init_map(t_data *data)
 	map = malloc(sizeof(t_map));
 	if (!map)
 		throw_error(data, "malloc failure");
-	map->done = 0;
-	map->no = NULL;
-	map->so = NULL;
-	map->ea = NULL;
-	map->we = NULL;
-	map->c = 0;
-	map->f = 0;
+	map->wall_no = NULL;
+	map->wall_so = NULL;
+	map->wall_ea = NULL;
+	map->wall_we = NULL;
+	map->ceiling = 0;
+	map->floor = 0;
 	map->fd = 0;
-	map->nb = 0;
+	map->start_count = 0;
 	map->map = NULL;
 	map->map_cp = NULL;
 	return (map);
@@ -35,10 +34,10 @@ t_map	*init_map(t_data *data)
 
 void	clear_map(t_map *map)
 {
-	free(map->ea);
-	free(map->no);
-	free(map->so);
-	free(map->we);
+	free(map->wall_no);
+	free(map->wall_so);
+	free(map->wall_ea);
+	free(map->wall_we);
 	free_split(map->map);
 	free(map);
 }
