@@ -1,22 +1,19 @@
 NAME = cub3d
 
-GAME_DIR = game
-UI_DIR = ui
+ENGINE_DIR = engine
 PARS_DIR = parsing
 STRUCT_DIR = structs
 UTIL_DIR = utils
 BIN_DIR = bin
 HDR_DIR = includes
 
-GAME_FILES = events.c
-UI_FILES = window.c images.c raycasting.c render.c
+ENGINE_FILES = raycasting.c rendering.c
 PARS_FILES = map.c parse_design.c parse_utils.c parse_map.c parse_utils2.c
-STRUCT_FILES = data.c map.c img.c player.c coord.c
-UTIL_FILES =  error.c
+STRUCT_FILES = data.c map.c img.c player.c ray.c keys.c
+UTIL_FILES = images.c time.c error.c
 
 SRCS = main.c \
-	$(addprefix $(GAME_DIR)/,$(GAME_FILES)) \
-	$(addprefix $(UI_DIR)/,$(UI_FILES)) \
+	$(addprefix $(ENGINE_DIR)/,$(ENGINE_FILES)) \
 	$(addprefix $(PARS_DIR)/,$(PARS_FILES)) \
 	$(addprefix $(STRUCT_DIR)/,$(STRUCT_FILES)) \
 	$(addprefix $(UTIL_DIR)/,$(UTIL_FILES))
@@ -44,11 +41,11 @@ RESET = \033[0m
 
 UNAME_S = $(shell uname -s)
 ifeq ($(UNAME_S), Linux)
-    INCLUDES += -I mlx_linux -I includes
+    INCLUDES += -I mlx_linux -I includes/linux_includes
     MFLAGS = -L mlx_linux -l mlx -l Xext -l X11 -lm -lz
     MLX = $(MLX_LINUX)
 else ifeq ($(UNAME_S), Darwin)
-    INCLUDES += -I mlx_macos -I includes
+    INCLUDES += -I mlx_macos -I includes/macos_includes
     MFLAGS = -L mlx_macos -l mlx -framework OpenGL -framework AppKit
     MLX = $(MLX_MACOS)
 else
