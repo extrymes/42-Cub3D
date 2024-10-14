@@ -7,7 +7,7 @@ UTIL_DIR = utils
 BIN_DIR = bin
 HDR_DIR = includes
 
-ENGINE_FILES = raycasting.c rendering.c
+ENGINE_FILES = raycasting.c rendering.c events.c routine.c moves.c rotates.c
 PARS_FILES = map.c parse_design.c parse_utils.c parse_map.c parse_utils2.c
 STRUCT_FILES = data.c map.c img.c player.c ray.c keys.c
 UTIL_FILES = images.c time.c error.c
