@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 11:49:44 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/14 13:08:35 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/14 17:53:23 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ struct s_data
 	void		*win_ptr;
 	int			win_width;
 	int			win_height;
+	double		last_tick;
 	size_t		background_size;
 	t_map		*map;
 	t_img		*img_tab;
@@ -105,7 +106,6 @@ struct s_player
 	double	dir_y;
 	double	plane_x;
 	double	plane_y;
-	double	last_move;
 };
 
 struct s_ray
@@ -159,6 +159,7 @@ void		copy_map(t_data *data);
 void		raycasting(t_data *data);
 
 // rendering.c
+void		render_scene(t_data *data);
 void		render_column(t_data *data, t_ray *ray, int x);
 void		render_background(t_data *data);
 
@@ -170,14 +171,14 @@ int			handle_destroy(t_data *data);
 int			routine(t_data *data);
 
 // moves.c
-void		move_forward(t_player *player, double move_speed);
-void		move_backward(t_player *player, double move_speed);
-void		move_left(t_player *player, double move_speed);
-void		move_right(t_player *player, double move_speed);
+int			move_forward(t_player *player, double move_speed);
+int			move_backward(t_player *player, double move_speed);
+int			move_left(t_player *player, double move_speed);
+int			move_right(t_player *player, double move_speed);
 
 // rotates.c
-void		rotate_left(t_player *player, double rotate_speed);
-void		rotate_right(t_player *player, double rotate_speed);
+int			rotate_left(t_player *player, double rotate_speed);
+int			rotate_right(t_player *player, double rotate_speed);
 
 // --- Structs ---
 // data.c
@@ -190,6 +191,7 @@ void		clear_map(t_map *map);
 
 // img.c
 t_img		init_img(void);
+t_img		*init_img_tab(t_data *data);
 void		set_img_addr(t_data *data, t_img *img);
 
 // player.c
@@ -209,7 +211,7 @@ void		put_pixel_on_img(t_img *img, int x, int y, int color);
 void		destroy_images(t_data *data, t_img *img_tab);
 
 // time.c
-double		get_time_in_sec(void);
+double		get_current_time(void);
 
 // error.c
 void		throw_error(t_data *data, char *err);
