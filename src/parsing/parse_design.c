@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 09:49:19 by msimao            #+#    #+#             */
-/*   Updated: 2024/10/11 14:59:45 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/12 11:53:31 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	check_file(char *file, t_data *data)
 	extension = ft_strrchr(file, '.');
 	if (!extension || ft_strcmp(extension, ".xpm"))
 		error_gnl("The file extension must be '.xpm'", file, data);
-	if (open(file, __O_DIRECTORY) > 0)
+	if (open(file, O_DIRECTORY) > 0)
 		error_gnl("Is a directory", file, data);
 	fd = open(file, O_RDONLY);
 	if (fd < 0)

@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:32:56 by msimao            #+#    #+#             */
-/*   Updated: 2024/10/11 14:42:58 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/12 11:53:17 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	check_file(char *file, t_data *data)
 	extension = ft_strrchr(file, '.');
 	if (!extension || ft_strcmp(extension, ".cub"))
 		throw_error(data, "the file extension must be '.cub'");
-	if (open(file, __O_DIRECTORY) > 0)
+	if (open(file, O_DIRECTORY) > 0)
 		throw_error(data, "is a directory");
 }
 
