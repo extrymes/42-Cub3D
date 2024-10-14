@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 10:44:05 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/11 10:29:36 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/14 13:07:21 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_data	init_data(void)
 	data.background_size = 0;
 	if (!data.mlx_ptr)
 		throw_error(&data, "mlx: init failure");
-	mlx_get_screen_size(data.mlx_ptr, &data.win_width, &data.win_height);
+	GET_SCREEN_SIZE(data.mlx_ptr, &data.win_width, &data.win_height);
 	data.win_ptr = mlx_new_window(data.mlx_ptr, data.win_width, data.win_height,
 			WIN_TITLE);
 	if (!data.win_ptr)
@@ -57,7 +57,7 @@ void	clear_data(t_data *data)
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	if (data->mlx_ptr)
 	{
-		mlx_destroy_display(data->mlx_ptr);
+		DESTROY_DISPLAY(data->mlx_ptr);
 		free(data->mlx_ptr);
 	}
 }
