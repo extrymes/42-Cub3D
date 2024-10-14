@@ -1,9 +1,10 @@
 NAME = cub3d
 
-ENGINE_DIR = engine
-PARS_DIR = parsing
-STRUCT_DIR = structs
-UTIL_DIR = utils
+SRC_DIR = src
+SRC_ENGINE_DIR = engine
+SRC_PARS_DIR = parsing
+SRC_STRUCT_DIR = structs
+SRC_UTIL_DIR = utils
 BIN_DIR = bin
 HDR_DIR = includes
 
@@ -12,11 +13,11 @@ PARS_FILES = map.c parse_design.c parse_utils.c parse_map.c parse_utils2.c
 STRUCT_FILES = data.c map.c img.c player.c ray.c keys.c
 UTIL_FILES = images.c time.c error.c
 
-SRCS = main.c \
-	$(addprefix $(ENGINE_DIR)/,$(ENGINE_FILES)) \
-	$(addprefix $(PARS_DIR)/,$(PARS_FILES)) \
-	$(addprefix $(STRUCT_DIR)/,$(STRUCT_FILES)) \
-	$(addprefix $(UTIL_DIR)/,$(UTIL_FILES))
+SRCS = $(addprefix $(SRC_DIR)/,main.c \
+	$(addprefix $(SRC_ENGINE_DIR)/,$(ENGINE_FILES)) \
+	$(addprefix $(SRC_PARS_DIR)/,$(PARS_FILES)) \
+	$(addprefix $(SRC_STRUCT_DIR)/,$(STRUCT_FILES)) \
+	$(addprefix $(SRC_UTIL_DIR)/,$(UTIL_FILES)))
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)/%.o)
 
@@ -24,7 +25,7 @@ MLX_LINUX = mlx_linux/libmlx.a
 MLX_MACOS = mlx_macos/libmlx.a
 LIBFT = libft/libft.a
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -O3 -mtune=native -flto
 CC = cc $(CFLAGS)
 
 INCLUDES = -I libft
