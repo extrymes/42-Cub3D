@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 00:03:56 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/11 13:40:05 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/14 12:50:02 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static int	get_color(t_data *data, t_ray *ray, int col_height, int y)
 	texture = data->img_tab[ray->wall_face];
 	tex_x = get_column(ray, &texture);
 	tex_y = (int)(((y - (-col_height / 2 + data->win_height / 2))
-		* texture.height) / col_height);
+				* texture.height) / col_height);
 	if (tex_y < 0)
 		tex_y = 0;
 	if (tex_y >= texture.height)

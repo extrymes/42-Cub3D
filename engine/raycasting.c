@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 22:23:22 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/11 15:45:50 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/14 12:53:42 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,11 @@ static t_ray	*cast_ray(t_data *data, double plane_x, double plane_y, int x)
 	hit_wall(data, ray);
 	ray->wall_face = get_wall_face(ray);
 	if (ray->wall_side == 0)
-		ray->per_wall_dist = (ray->rough_x - data->player->pos_x + (1 - ray->step_x) / 2) / ray->dir_x;
+		ray->per_wall_dist = (ray->rough_x - data->player->pos_x
+				+ (1 - ray->step_x) / 2) / ray->dir_x;
 	else
-		ray->per_wall_dist = (ray->rough_y - data->player->pos_y + (1 - ray->step_y) / 2) / ray->dir_y;
+		ray->per_wall_dist = (ray->rough_y - data->player->pos_y
+				+ (1 - ray->step_y) / 2) / ray->dir_y;
 	return (ray);
 }
 
@@ -69,7 +71,8 @@ static void	hit_wall(t_data *data, t_ray *ray)
 			ray->wall_side = 1;
 		}
 		if (ray->rough_y < 0 || ray->rough_x < 0
-		 || ray->rough_y >= len_tab(data->map->map) || ray->rough_x >= (int)ft_strlen(data->map->map[ray->rough_y]))
+			|| (ray->rough_y >= len_tab(data->map->map))
+			|| (ray->rough_x >= (int)ft_strlen(data->map->map[ray->rough_y])))
 			return (free(ray), throw_error(data, "ray is out of map"));
 		if (data->map->map[ray->rough_y][ray->rough_x] == '1')
 			break ;
