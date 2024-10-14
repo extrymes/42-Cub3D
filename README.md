@@ -19,6 +19,11 @@ make
 ```
 The map file must be in `.cub` format, as indicated in the cub3d specifications.
 
+## Controls
+- `W`, `S`, `A`, `D` to move the player
+- `←`, `→` and the mouse to rotate the camera
+- `ESC` to exit the game
+
 ## Map requirements
 Maps must conform to cub3d specifications, which are the following:
 - The map must be composed of **only 6 possible characters**: `0` for an empty space, `1` for a wall, and `N`, `S` ,`E` or `W` for the player’s starting position and spawning orientation.
