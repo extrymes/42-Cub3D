@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 12:53:15 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/10 14:57:03 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/14 17:13:39 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,5 @@ t_player	*init_player(t_data *data)
 	player->dir_y = 0.0;
 	player->plane_x = 0.0;
 	player->plane_y = 0.0;
-	player->last_move = 0.0;
 	return (player);
 }

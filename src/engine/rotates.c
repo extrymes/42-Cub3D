@@ -6,13 +6,13 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:32:08 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/14 12:49:21 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/14 16:46:18 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	rotate_left(t_player *player, double rotate_speed)
+int	rotate_left(t_player *player, double rotate_speed)
 {
 	double	old_dir_x;
 
@@ -21,9 +21,10 @@ void	rotate_left(t_player *player, double rotate_speed)
 		- (player->dir_y * sin(-rotate_speed));
 	player->dir_y = (old_dir_x * sin(-rotate_speed))
 		+ (player->dir_y * cos(-rotate_speed));
+	return (1);
 }
 
-void	rotate_right(t_player *player, double rotate_speed)
+int	rotate_right(t_player *player, double rotate_speed)
 {
 	double	old_dir_x;
 
@@ -32,4 +33,5 @@ void	rotate_right(t_player *player, double rotate_speed)
 		- (player->dir_y * sin(rotate_speed));
 	player->dir_y = (old_dir_x * sin(rotate_speed))
 		+ (player->dir_y * cos(rotate_speed));
+	return (1);
 }

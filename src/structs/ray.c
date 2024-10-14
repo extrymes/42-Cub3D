@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 11:38:19 by msimao            #+#    #+#             */
-/*   Updated: 2024/10/11 14:34:01 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/14 18:10:38 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,15 @@ static void	calculate_step(t_ray *ray)
 static void	calculate_side_dist(t_data *data, t_ray *ray)
 {
 	if (ray->dir_x < 0)
-		ray->side_dist_x = (data->player->pos_x - ray->rough_x) * ray->delta_dist_x;
+		ray->side_dist_x = (data->player->pos_x - ray->rough_x)
+			* ray->delta_dist_x;
 	else
-		ray->side_dist_x = (ray->rough_x + 1.0 - data->player->pos_x) * ray->delta_dist_x;
+		ray->side_dist_x = (ray->rough_x + 1.0 - data->player->pos_x)
+			* ray->delta_dist_x;
 	if (ray->dir_y < 0)
-		ray->side_dist_y = (data->player->pos_y - ray->rough_y) * ray->delta_dist_y;
+		ray->side_dist_y = (data->player->pos_y - ray->rough_y)
+			* ray->delta_dist_y;
 	else
-		ray->side_dist_y = (ray->rough_y + 1.0 - data->player->pos_y) * ray->delta_dist_y;
+		ray->side_dist_y = (ray->rough_y + 1.0 - data->player->pos_y)
+			* ray->delta_dist_y;
 }

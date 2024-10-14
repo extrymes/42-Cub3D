@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 09:49:19 by msimao            #+#    #+#             */
-/*   Updated: 2024/10/12 11:53:31 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/14 18:12:14 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,13 @@ static int	display_info(char *str, t_data *data)
 	i = 0;
 	while (str[i] && ft_isspace(str[i]))
 		i++;
-	if (str[i] && str[i] == 'N'  && str[i + 1] && str[i + 1] == 'O')
+	if (str[i] && str[i] == 'N' && str[i + 1] && str[i + 1] == 'O')
 		return (data->map->wall_no = save_wall(str, data, data->map->wall_no), 1);
-	else if (str[i] && str[i] == 'S'  && str[i + 1] && str[i + 1] == 'O')
+	else if (str[i] && str[i] == 'S' && str[i + 1] && str[i + 1] == 'O')
 		return (data->map->wall_so = save_wall(str, data, data->map->wall_so), 1);
-	else if (str[i] && str[i] == 'W'  && str[i + 1] && str[i + 1] == 'E')
+	else if (str[i] && str[i] == 'W' && str[i + 1] && str[i + 1] == 'E')
 		return (data->map->wall_we = save_wall(str, data, data->map->wall_we), 1);
-	else if (str[i] && str[i] == 'E'  && str[i + 1] && str[i + 1] == 'A')
+	else if (str[i] && str[i] == 'E' && str[i + 1] && str[i + 1] == 'A')
 		return (data->map->wall_ea = save_wall(str, data, data->map->wall_ea), 1);
 	else if (str[i] && str[i] == 'F')
 		return (data->map->floor = save_rgb(str, data, data->map->floor), 1);

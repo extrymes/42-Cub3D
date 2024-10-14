@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 11:40:36 by msimao            #+#    #+#             */
-/*   Updated: 2024/10/11 15:37:43 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/14 18:13:29 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	flood_fill(t_map *map, int x, int y, t_data *data)
 		flood_fill(map, x + 1, y, data);
 		flood_fill(map, x - 1, y, data);
 		flood_fill(map, x, y + 1, data);
-		flood_fill(map, x, y - 1, data); // 8 direction
+		flood_fill(map, x, y - 1, data);
 	}
 	else if (map->map_cp[y][x] != '1')
 		error_map("Invalid char", data);
@@ -58,6 +58,7 @@ static void	set_player(t_data *data, char c, int y, int x)
 		data->player->dir_x = -1.0;
 	data->map->start_count++;
 }
+
 void	parse_map(t_data *data)
 {
 	int	y;

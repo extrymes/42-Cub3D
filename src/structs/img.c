@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 12:19:24 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/04 15:50:19 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/14 17:21:40 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,20 @@ t_img	init_img(void)
 	img.line_length = 0;
 	img.endian = 0;
 	return (img);
+}
+
+t_img	*init_img_tab(t_data *data)
+{
+	t_img	*img_tab;
+	int		i;
+
+	img_tab = malloc(IMG_COUNT * sizeof(t_img));
+	if (!img_tab)
+		throw_error(data, "malloc failure");
+	i = 0;
+	while (i < IMG_COUNT)
+		img_tab[i++] = init_img();
+	return (img_tab);
 }
 
 void	set_img_addr(t_data *data, t_img *img)
