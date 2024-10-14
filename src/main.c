@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 09:09:13 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/11 01:10:23 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/14 16:43:55 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int ac, char **av)
 	check_map(av[1], &data);
 	create_images(&data);
 	draw_background(&data);
-	raycasting(&data);
+	render_scene(&data);
 	handle_events(&data);
 	return (clear_data(&data), 0);
 }

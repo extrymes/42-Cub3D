@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 22:23:22 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/14 12:53:42 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/14 16:28:36 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	raycasting(t_data *data)
 	double	fov_plane_scale;
 	int		x;
 
-	render_background(data);
 	fov_plane_scale = tanf((FOV * (M_PI / 180.0)) / 2.0);
 	data->player->plane_x = -data->player->dir_y * fov_plane_scale;
 	data->player->plane_y = data->player->dir_x * fov_plane_scale;
@@ -34,8 +33,6 @@ void	raycasting(t_data *data)
 		x += VERTICAL_SLICING;
 		free(ray);
 	}
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-		data->img_tab[RENDERING].ptr, 0, 0);
 }
 
 static t_ray	*cast_ray(t_data *data, double plane_x, double plane_y, int x)
