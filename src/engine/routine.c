@@ -6,47 +6,48 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:38:59 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/18 03:21:23 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/18 15:33:19 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	handle_moves(t_data *data, double current_time);
+static void	handle_moves(t_data *data, double elapsed_time);
 
 int	routine(t_data *data)
 {
 	double	current_time;
 
 	current_time = get_current_time();
-	if (handle_moves(data, current_time))
+	handle_moves(data, current_time - data->last_tick);
+	if ((current_time - data->last_frame) > (1000.0 / FPS))
+	{
 		render_scene(data);
+		data->last_frame = current_time;
+	}
 	if (data->keys->key_esc)
 		handle_destroy(data);
 	data->last_tick = current_time;
 	return (0);
 }
 
-static int	handle_moves(t_data *data, double current_time)
+static void	handle_moves(t_data *data, double elapsed_time)
 {
 	double	move_speed;
 	double	rotate_speed;
-	int		moved;
 
-	move_speed = MOVE_SPEED * (current_time - data->last_tick);
-	rotate_speed = ROTATE_SPEED * (current_time - data->last_tick);
-	moved = 0;
+	move_speed = MOVE_SPEED * (elapsed_time / 1000.0);
+	rotate_speed = ROTATE_SPEED * (elapsed_time / 1000.0);
 	if (data->keys->key_w)
-		moved = move_forward(data->player, data->map->tab, move_speed);
+		move_forward(data->player, data->map->tab, move_speed);
 	if (data->keys->key_s)
-		moved = move_backward(data->player, data->map->tab, move_speed);
+		move_backward(data->player, data->map->tab, move_speed);
 	if (data->keys->key_a)
-		moved = move_left(data->player, data->map->tab, move_speed);
+		move_left(data->player, data->map->tab, move_speed);
 	if (data->keys->key_d)
-		moved = move_right(data->player, data->map->tab, move_speed);
+		move_right(data->player, data->map->tab, move_speed);
 	if (data->keys->key_left)
-		moved = rotate_left(data->player, rotate_speed);
+		rotate_left(data->player, rotate_speed);
 	if (data->keys->key_right)
-		moved = rotate_right(data->player, rotate_speed);
-	return (moved);
+		rotate_right(data->player, rotate_speed);
 }
