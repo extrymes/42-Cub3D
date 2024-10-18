@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 00:03:56 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/14 16:43:55 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/18 03:11:09 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ static int	get_color(t_data *data, t_ray *ray, int col_height, int y)
 		tex_y = 0;
 	if (tex_y >= texture.height)
 		tex_y = texture.height - 1;
-	pixel = texture.addr + (tex_y * texture.line_length + \
-	tex_x * (texture.bits_per_pixel / 8));
+	pixel = texture.addr + (tex_y * texture.line_length
+			+ (tex_x * (texture.bits_per_pixel / 8)));
 	color = *(unsigned int *)pixel;
 	return (color);
 }

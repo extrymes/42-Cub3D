@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 10:47:37 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/11 15:00:40 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/18 03:21:23 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ t_map	*init_map(t_data *data)
 	map->floor = 0;
 	map->fd = 0;
 	map->start_count = 0;
-	map->map = NULL;
-	map->map_cp = NULL;
+	map->tab = NULL;
+	map->tab_cp = NULL;
 	return (map);
 }
 
@@ -38,6 +38,6 @@ void	clear_map(t_map *map)
 	free(map->wall_so);
 	free(map->wall_ea);
 	free(map->wall_we);
-	free_split(map->map);
+	free_split(map->tab);
 	free(map);
 }

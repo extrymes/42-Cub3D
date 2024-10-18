@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 22:23:22 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/14 16:28:36 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/18 03:21:23 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ static int		get_wall_face(t_ray *ray);
 void	raycasting(t_data *data)
 {
 	t_ray	*ray;
-	double	fov_plane_scale;
+	double	project_plane;
 	int		x;
 
-	fov_plane_scale = tanf((FOV * (M_PI / 180.0)) / 2.0);
-	data->player->plane_x = -data->player->dir_y * fov_plane_scale;
-	data->player->plane_y = data->player->dir_x * fov_plane_scale;
+	project_plane = tanf((FOV * (M_PI / 180.0)) / 2.0);
+	data->player->plane_x = -data->player->dir_y * project_plane;
+	data->player->plane_y = data->player->dir_x * project_plane;
 	x = 0;
 	while (x < data->win_width)
 	{
@@ -68,10 +68,10 @@ static void	hit_wall(t_data *data, t_ray *ray)
 			ray->wall_side = 1;
 		}
 		if (ray->rough_y < 0 || ray->rough_x < 0
-			|| (ray->rough_y >= len_tab(data->map->map))
-			|| (ray->rough_x >= (int)ft_strlen(data->map->map[ray->rough_y])))
+			|| (ray->rough_y >= len_tab(data->map->tab))
+			|| (ray->rough_x >= (int)ft_strlen(data->map->tab[ray->rough_y])))
 			return (free(ray), throw_error(data, "ray is out of map"));
-		if (data->map->map[ray->rough_y][ray->rough_x] == '1')
+		if (data->map->tab[ray->rough_y][ray->rough_x] == '1')
 			break ;
 	}
 }

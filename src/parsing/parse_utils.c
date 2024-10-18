@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:44:16 by msimao            #+#    #+#             */
-/*   Updated: 2024/10/04 15:50:19 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/18 03:20:54 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	error_gnl(char *err, char *str, t_data *data)
 
 void	error_map(char *err, t_data *data)
 {
-	free_split(data->map->map_cp);
+	free_split(data->map->tab_cp);
 	throw_error(data, err);
 }
 

@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:38:59 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/18 03:12:52 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/18 03:21:23 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ static int	handle_moves(t_data *data, double current_time)
 	rotate_speed = ROTATE_SPEED * (current_time - data->last_tick);
 	moved = 0;
 	if (data->keys->key_w)
-		moved = move_forward(data->player, data->map->map, move_speed);
+		moved = move_forward(data->player, data->map->tab, move_speed);
 	if (data->keys->key_s)
-		moved = move_backward(data->player, data->map->map, move_speed);
+		moved = move_backward(data->player, data->map->tab, move_speed);
 	if (data->keys->key_a)
-		moved = move_left(data->player, data->map->map, move_speed);
+		moved = move_left(data->player, data->map->tab, move_speed);
 	if (data->keys->key_d)
-		moved = move_right(data->player, data->map->map, move_speed);
+		moved = move_right(data->player, data->map->tab, move_speed);
 	if (data->keys->key_left)
 		moved = rotate_left(data->player, rotate_speed);
 	if (data->keys->key_right)

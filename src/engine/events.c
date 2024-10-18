@@ -6,14 +6,14 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 10:43:22 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/14 12:54:50 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/18 03:47:54 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	handle_keypress(int keysym, t_data *data);
-static int	handle_keyrelease(int keysym, t_data *data);
+static int	handle_keypress(int keycode, t_data *data);
+static int	handle_keyrelease(int keycode, t_data *data);
 
 void	handle_events(t_data *data)
 {
