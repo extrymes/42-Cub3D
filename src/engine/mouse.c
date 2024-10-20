@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/18 09:09:13 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/20 18:42:17 by sabras           ###   ########.fr       */
+/*   Created: 2024/10/20 18:04:27 by sabras            #+#    #+#             */
+/*   Updated: 2024/10/20 18:37:52 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int ac, char **av)
+void	track_mouse(t_data *data)
 {
-	t_data	data;
+	MOUSE_HIDE(data->mlx_ptr, data->win_ptr);
+	data->mouse_tracked = 1;
+}
 
-	if (ac != 2)
-		return (ft_putstr_fd(RED "Usage:\n\t./cub3d <map.cub>\n" RESET, 2), 1);
-	data = init_data();
-	check_map(av[1], &data);
-	create_images(&data);
-	draw_background(&data);
-	render_scene(&data);
-	track_mouse(&data);
-	handle_events(&data);
-	return (clear_data(&data), 0);
+void	untrack_mouse(t_data *data)
+{
+	MOUSE_SHOW(data->mlx_ptr, data->win_ptr);
+	data->mouse_tracked = 0;
+}
+
+void	toggle_mouse_tracking(t_data *data)
+{
+	if (!data->mouse_tracked)
+		track_mouse(data);
+	else
+		untrack_mouse(data);
 }
