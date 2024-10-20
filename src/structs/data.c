@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 10:44:05 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/18 14:41:04 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/20 18:42:31 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_data	init_data(void)
 	data.last_frame = 0.0;
 	data.last_tick = 0.0;
 	data.background_size = 0;
+	data.mouse_tracked = 0;
 	if (!data.mlx_ptr)
 		throw_error(&data, "mlx: init failure");
 	GET_SCREEN_SIZE(data.mlx_ptr, &data.win_width, &data.win_height);
