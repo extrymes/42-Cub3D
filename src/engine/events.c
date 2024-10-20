@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 10:43:22 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/20 18:43:34 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/20 18:44:36 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,20 @@
 static int	handle_keypress(int keycode, t_data *data);
 static int	handle_keyrelease(int keycode, t_data *data);
 static int	handle_mouse_move(int x, int y, t_data *data);
+static int	handle_destroy(t_data *data);
 
 void	handle_events(t_data *data)
 {
 	mlx_hook(data->win_ptr, KEYPRESS, KEYPRESSMASK,
-		&handle_keypress, data);
+		handle_keypress, data);
 	mlx_hook(data->win_ptr, KEYRELEASE, KEYRELEASEMASK,
-		&handle_keyrelease, data);
+		handle_keyrelease, data);
 	mlx_hook(data->win_ptr, MOTIONNOTIFY, POINTERMOTIONMASK,
 		handle_mouse_move, data);
 	mlx_hook(data->win_ptr, DESTROYNOTIFY, STRUCTURENOTIFYMASK,
-		&handle_destroy, data);
+		handle_destroy, data);
 	mlx_loop_hook(data->mlx_ptr, routine, data);
 	mlx_loop(data->mlx_ptr);
-}
-
-int	handle_destroy(t_data *data)
-{
-	clear_data(data);
-	return (exit(0), 0);
 }
 
 static int	handle_keypress(int keycode, t_data *data)
@@ -51,7 +46,7 @@ static int	handle_keypress(int keycode, t_data *data)
 	else if (keycode == KEY_RIGHT)
 		data->keys->key_right = 1;
 	else if (keycode == KEY_ESC)
-		data->keys->key_esc = 1;
+		handle_destroy(data);
 	else if (keycode == KEY_CTRL)
 		toggle_mouse_tracking(data);
 	return (0);
@@ -96,4 +91,10 @@ static int	handle_mouse_move(int x, int y, t_data *data)
 		rotate_right(data->player, delta_x * rotate_speed);
 	MOUSE_MOVE(data->mlx_ptr, data->win_ptr, win_center_x, win_center_y);
 	return (0);
+}
+
+static int	handle_destroy(t_data *data)
+{
+	clear_data(data);
+	return (exit(0), 0);
 }
