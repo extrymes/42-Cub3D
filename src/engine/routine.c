@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:38:59 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/18 15:33:19 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/18 16:19:44 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ static void	handle_moves(t_data *data, double elapsed_time)
 
 	move_speed = MOVE_SPEED * (elapsed_time / 1000.0);
 	rotate_speed = ROTATE_SPEED * (elapsed_time / 1000.0);
+	if (((data->keys->key_w && !data->keys->key_s)
+			|| (!data->keys->key_w && data->keys->key_s))
+		&& ((data->keys->key_a && !data->keys->key_d)
+			|| (!data->keys->key_a && data->keys->key_d)))
+		move_speed /= 1.5;
 	if (data->keys->key_w)
 		move_forward(data->player, data->map->tab, move_speed);
 	if (data->keys->key_s)
