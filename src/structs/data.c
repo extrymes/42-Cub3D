@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 10:44:05 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/14 17:50:16 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/18 14:41:04 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_data	init_data(void)
 	data.map = NULL;
 	data.img_tab = NULL;
 	data.player = NULL;
+	data.last_frame = 0.0;
 	data.last_tick = 0.0;
 	data.background_size = 0;
 	if (!data.mlx_ptr)
