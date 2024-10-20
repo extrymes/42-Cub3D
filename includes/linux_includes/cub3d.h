@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 09:09:34 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/14 17:53:23 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/20 18:34:50 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,25 @@
 # include <sys/time.h>
 # include <fcntl.h>
 # define WIN_TITLE "42-Cub3D"
-# define IMG_COUNT 6
+# define IMG_COUNT 7
 # define WALL_NO 0
 # define WALL_SO 1
 # define WALL_EA 2
 # define WALL_WE 3
-# define BACKGROUND 4
-# define RENDERING 5
-# define FOV 90
+# define ARROW 4
+# define BACKGROUND 5
+# define RENDERING 6
+# define FOV 90.0
+# define FPS 60.0
+# define MINIMAP_MARGIN_HEIGHT 40
+# define MINIMAP_MARGIN_WIDTH 40
+# define MINIMAP_SQUARE_SIZE 20
 # define VERTICAL_SLICING 2
 # define MOVE_SPEED 3.0
 # define ROTATE_SPEED 2.5
+# define MOUSE_SENSITIVITY 0.02
 # define KEY_ESC XK_Escape
+# define KEY_CTRL XK_Control_L
 # define KEY_W XK_w
 # define KEY_S XK_s
 # define KEY_A XK_a
@@ -46,8 +53,13 @@
 # define KEYPRESSMASK KeyPressMask
 # define KEYRELEASE KeyRelease
 # define KEYRELEASEMASK KeyReleaseMask
+# define MOTIONNOTIFY MotionNotify
+# define POINTERMOTIONMASK PointerMotionMask
 # define DESTROYNOTIFY DestroyNotify
 # define STRUCTURENOTIFYMASK StructureNotifyMask
+# define MOUSE_HIDE(mlx_ptr, win_ptr) mlx_mouse_hide(mlx_ptr, win_ptr)
+# define MOUSE_SHOW(mlx_ptr, win_ptr) mlx_mouse_show(mlx_ptr, win_ptr)
+# define MOUSE_MOVE(mlx_ptr, win_ptr, x, y) mlx_mouse_move(mlx_ptr, win_ptr, x, y);
 # define GET_SCREEN_SIZE(mlx_ptr, win_width, win_height) mlx_get_screen_size(mlx_ptr, win_width, win_height)
 # define DESTROY_DISPLAY(mlx_ptr) mlx_destroy_display(mlx_ptr)
 
@@ -66,7 +78,9 @@ struct s_data
 	void		*win_ptr;
 	int			win_width;
 	int			win_height;
+	double		last_frame;
 	double		last_tick;
+	int			mouse_tracked;
 	size_t		background_size;
 	t_map		*map;
 	t_img		*img_tab;
@@ -84,8 +98,8 @@ struct s_map
 	int		ceiling;
 	int		floor;
 	int		start_count;
-	char	**map;
-	char	**map_cp;
+	char	**tab;
+	char	**tab_cp;
 	char	player;
 };
 
@@ -137,7 +151,6 @@ struct s_keys
 	int	key_d;
 	int	key_left;
 	int	key_right;
-	int	key_esc;
 };
 
 // --- Parsing ---
@@ -167,20 +180,27 @@ void		render_background(t_data *data);
 
 // events.c
 void		handle_events(t_data *data);
-int			handle_destroy(t_data *data);
 
 // routine.c
 int			routine(t_data *data);
 
+// minimap.c
+void		render_minimap(t_data *data);
+
 // moves.c
-int			move_forward(t_player *player, double move_speed);
-int			move_backward(t_player *player, double move_speed);
-int			move_left(t_player *player, double move_speed);
-int			move_right(t_player *player, double move_speed);
+void		move_forward(t_player *player, char **map, double move_speed);
+void		move_backward(t_player *player, char **map, double move_speed);
+void		move_left(t_player *player, char **map, double move_speed);
+void		move_right(t_player *player, char **map, double move_speed);
 
 // rotates.c
-int			rotate_left(t_player *player, double rotate_speed);
-int			rotate_right(t_player *player, double rotate_speed);
+void		rotate_left(t_player *player, double rotate_speed);
+void		rotate_right(t_player *player, double rotate_speed);
+
+// mouse.c
+void		track_mouse(t_data *data);
+void		untrack_mouse(t_data *data);
+void		toggle_mouse_tracking(t_data *data);
 
 // --- Structs ---
 // data.c
