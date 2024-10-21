@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 22:23:22 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/18 03:21:23 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/21 00:28:35 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static t_ray	*cast_ray(t_data *data, double plane_x, double plane_y, int x);
 static void		hit_wall(t_data *data, t_ray *ray);
+static int		check_wall_hit(t_ray *ray, char **map);
 static int		get_wall_face(t_ray *ray);
 
 void	raycasting(t_data *data)
@@ -68,12 +69,22 @@ static void	hit_wall(t_data *data, t_ray *ray)
 			ray->wall_side = 1;
 		}
 		if (ray->rough_y < 0 || ray->rough_x < 0
-			|| (ray->rough_y >= len_tab(data->map->tab))
+			|| (ray->rough_y >= tablen(data->map->tab))
 			|| (ray->rough_x >= (int)ft_strlen(data->map->tab[ray->rough_y])))
 			return (free(ray), throw_error(data, "ray is out of map"));
-		if (data->map->tab[ray->rough_y][ray->rough_x] == '1')
+		if (check_wall_hit(ray, data->map->tab))
 			break ;
 	}
+}
+
+static int	check_wall_hit(t_ray *ray, char **map)
+{
+	char	obj;
+
+	obj = map[ray->rough_y][ray->rough_x];
+	if (obj == '1' || obj == 'D')
+		return (ray->wall_hit = obj, 1);
+	return (0);
 }
 
 static int	get_wall_face(t_ray *ray)

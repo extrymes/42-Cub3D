@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 00:03:56 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/18 03:11:09 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/21 09:06:50 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,10 @@ static int	get_color(t_data *data, t_ray *ray, int col_height, int y)
 	int		color;
 	char	*pixel;
 
-	texture = data->img_tab[ray->wall_face];
+	if (ray->wall_hit == '1')
+		texture = data->img_tab[ray->wall_face];
+	else if (ray->wall_hit == 'D')
+		texture = data->img_tab[DOOR];
 	tex_x = get_column(ray, &texture);
 	tex_y = (int)(((y - (-col_height / 2 + data->win_height / 2))
 				* texture.height) / col_height);

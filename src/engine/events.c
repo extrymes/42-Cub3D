@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 10:43:22 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/20 18:44:36 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/21 11:03:08 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,12 @@ static int	handle_keypress(int keycode, t_data *data)
 		data->keys->key_left = 1;
 	else if (keycode == KEY_RIGHT)
 		data->keys->key_right = 1;
-	else if (keycode == KEY_ESC)
-		handle_destroy(data);
+	else if (keycode == KEY_E)
+		toggle_nearest_door(data, data->map->tab);
 	else if (keycode == KEY_CTRL)
 		toggle_mouse_tracking(data);
+	else if (keycode == KEY_ESC)
+		handle_destroy(data);
 	return (0);
 }
 
