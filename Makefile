@@ -8,7 +8,7 @@ SRC_UTIL_DIR = utils
 BIN_DIR = bin
 HDR_DIR = includes
 
-ENGINE_FILES = raycasting.c rendering.c minimap.c events.c routine.c moves.c rotates.c mouse.c
+ENGINE_FILES = raycasting.c rendering.c minimap.c door.c events.c routine.c moves.c rotates.c mouse.c
 PARS_FILES = map.c parse_design.c parse_utils.c parse_map.c parse_utils2.c
 STRUCT_FILES = data.c map.c img.c player.c ray.c keys.c
 UTIL_FILES = images.c time.c error.c
@@ -43,7 +43,7 @@ RESET = \033[0m
 UNAME_S = $(shell uname -s)
 ifeq ($(UNAME_S), Linux)
     INCLUDES += -I mlx_linux -I includes/linux_includes
-    MFLAGS = -L mlx_linux -l mlx -l Xext -l X11 -lm -lz
+    MFLAGS = -L mlx_linux -l mlx -l Xext -l X11 -lm -lz -lXfixes
     MLX = $(MLX_LINUX)
 else ifeq ($(UNAME_S), Darwin)
     INCLUDES += -I mlx_macos -I includes/macos_includes
