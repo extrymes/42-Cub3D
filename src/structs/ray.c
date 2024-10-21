@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 11:38:19 by msimao            #+#    #+#             */
-/*   Updated: 2024/10/14 18:10:38 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/21 17:00:03 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ t_ray	*init_ray(t_data *data, double plane_x, double plane_y, int x)
 	ray->wall_side = 0;
 	ray->wall_face = 0;
 	ray->per_wall_dist = 0.0;
+	ray->wall_hit = 0;
 	return (ray);
 }
 
