@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 18:04:27 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/20 18:37:52 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/21 10:26:17 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,13 @@
 
 void	track_mouse(t_data *data)
 {
+	int	win_center_x;
+	int	win_center_y;
+
+	win_center_x = data->win_width / 2;
+	win_center_y = data->win_height / 2;
 	MOUSE_HIDE(data->mlx_ptr, data->win_ptr);
+	MOUSE_MOVE(data->mlx_ptr, data->win_ptr, win_center_x, win_center_y);
 	data->mouse_tracked = 1;
 }
 
