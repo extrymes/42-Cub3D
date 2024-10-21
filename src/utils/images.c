@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 09:45:54 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/21 17:00:09 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/21 21:15:45 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	create_images(t_data *data)
 	create_img(data, &data->img_tab[WALL_SO], data->map->wall_so);
 	create_img(data, &data->img_tab[WALL_EA], data->map->wall_ea);
 	create_img(data, &data->img_tab[WALL_WE], data->map->wall_we);
+	create_img(data, &data->img_tab[DOOR], IMG_DOOR);
+	create_img(data, &data->img_tab[ARROW], IMG_ARROW);
 	create_img(data, &data->img_tab[BACKGROUND], NULL);
 	create_img(data, &data->img_tab[RENDERING], NULL);
 }
