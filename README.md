@@ -22,6 +22,7 @@ The map file must be in `.cub` format, as indicated in the cub3d specifications.
 ## Controls
 - `W`, `S`, `A`, `D` to move the player
 - `←`, `→` and the mouse to rotate the camera
+- `E` to open or close the door
 - `CTRL` to toggle mouse tracking
 - `ESC` to exit the game
 
