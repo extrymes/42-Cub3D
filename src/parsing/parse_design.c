@@ -6,11 +6,38 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 09:49:19 by msimao            #+#    #+#             */
-/*   Updated: 2024/10/18 03:20:54 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/21 01:49:32 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static void	check_file(char *file, t_data *data);
+static void	save_wall(char *str, t_data *data, char **filename);
+static void	save_rgb(char *str, t_data *data, int *rgb);
+static int	display_info(char *str, t_data *data);
+
+void	parse_design(t_data *data)
+{
+	char	*str;
+	int		nbr_design;
+
+	nbr_design = 0;
+	while (1)
+	{
+		str = get_next_line(data->map->fd);
+		if (str == NULL)
+			break ;
+		remove_nl(str);
+		if (nbr_design < 6)
+			nbr_design += display_info(str, data);
+		else
+			save_map(str, data->map);
+	}
+	close(data->map->fd);
+	parse_map(data);
+	free_split(data->map->tab_cp);
+}
 
 static void	check_file(char *file, t_data *data)
 {
@@ -92,26 +119,4 @@ static int	display_info(char *str, t_data *data)
 	else if (ft_isprint(str[i]))
 		error_gnl("unexpected character", str, data);
 	return (free(str), 0);
-}
-
-void	parse_design(t_data *data)
-{
-	char	*str;
-	int		nbr_design;
-
-	nbr_design = 0;
-	while (1)
-	{
-		str = get_next_line(data->map->fd);
-		if (str == NULL)
-			break ;
-		remove_nl(str);
-		if (nbr_design < 6)
-			nbr_design += display_info(str, data);
-		else
-			save_map(str, data->map);
-	}
-	close(data->map->fd);
-	parse_map(data);
-	free_split(data->map->tab_cp);
 }

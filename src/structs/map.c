@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 10:47:37 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/18 03:21:23 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/20 23:09:43 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_map	*init_map(t_data *data)
 	map->ceiling = 0;
 	map->floor = 0;
 	map->fd = 0;
-	map->start_count = 0;
+	map->starting_count = 0;
 	map->tab = NULL;
 	map->tab_cp = NULL;
 	return (map);
