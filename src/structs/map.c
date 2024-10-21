@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 10:47:37 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/20 23:09:43 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/21 16:59:55 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_map	*init_map(t_data *data)
 
 	map = malloc(sizeof(t_map));
 	if (!map)
-		throw_error(data, "malloc failure");
+		throw_error(data, "Malloc failure");
 	map->wall_no = NULL;
 	map->wall_so = NULL;
 	map->wall_ea = NULL;

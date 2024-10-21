@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:38:59 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/21 15:29:09 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/21 16:32:18 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,18 @@ static void	handle_moves(t_data *data, double elapsed_time)
 		rotate_left(data->player, rotate_speed);
 	if (data->keys->key_right)
 		rotate_right(data->player, rotate_speed);
+}
+
+int	is_valid_move(char **map, double pos_x, double pos_y)
+{
+	int	x;
+	int	y;
+
+	x = pos_x;
+	y = pos_y;
+	if (x < 0 || y < 0 || y >= tablen(map) || x >= (int)ft_strlen(map[y]))
+		return (0);
+	if (map[y][x] == '1' || map[y][x] == 'D')
+		return (0);
+	return (1);
 }

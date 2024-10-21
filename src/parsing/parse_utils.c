@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:44:16 by msimao            #+#    #+#             */
-/*   Updated: 2024/10/18 03:20:54 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/21 14:24:02 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	error_gnl(char *err, char *str, t_data *data)
 {
 	free(str);
-	close(data->map->fd);
 	throw_error(data, err);
 }
 

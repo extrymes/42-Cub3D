@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 11:38:19 by msimao            #+#    #+#             */
-/*   Updated: 2024/10/21 17:00:03 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/21 17:01:07 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_ray	*init_ray(t_data *data, double plane_x, double plane_y, int x)
 
 	ray = malloc(sizeof(t_ray));
 	if (!ray)
-		throw_error(data, "malloc failure");
+		throw_error(data, "Malloc failure");
 	fov_ray_x = 2 * x / (double)data->win_width - 1;
 	ray->pos_x = data->player->pos_x;
 	ray->pos_y = data->player->pos_y;

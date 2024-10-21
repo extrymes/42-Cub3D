@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 12:53:15 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/14 17:13:39 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/21 16:59:58 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_player	*init_player(t_data *data)
 
 	player = malloc(sizeof(t_player));
 	if (!player)
-		throw_error(data, "malloc failure");
+		throw_error(data, "Malloc failure");
 	player->pos_x = 0.0;
 	player->pos_y = 0.0;
 	player->dir_x = 0.0;

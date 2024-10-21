@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 11:40:36 by msimao            #+#    #+#             */
-/*   Updated: 2024/10/21 01:52:24 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/21 14:30:00 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ void	parse_map(t_data *data)
 				set_player(data, data->map->tab[y][x], x, y);
 			else if (data->map->tab[y][x] != '1' && data->map->tab[y][x] != ' '
 				&& data->map->tab[y][x] != '0' && data->map->tab[y][x] != 'D')
-				throw_error(data, "invalid char");
+				throw_error(data, "Invalid char");
 		}
 	}
 	if (data->map->starting_count != 1)
-		throw_error(data, "too many starting positions");
+		throw_error(data, "Invalid starting count");
 	copy_map(data);
 	flood_fill(data->map, data->player->pos_x, data->player->pos_y, data);
 }

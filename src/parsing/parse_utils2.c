@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:37:04 by msimao            #+#    #+#             */
-/*   Updated: 2024/10/21 01:47:44 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/21 13:50:45 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,12 @@ void	copy_map(t_data *data)
 	i = 0;
 	data->map->tab_cp = malloc(sizeof(char *) * (tablen(data->map->tab) + 1));
 	if (data->map->tab_cp == NULL)
-		throw_error(data, "malloc failure");
+		throw_error(data, "Malloc failure");
 	while (i < tablen(data->map->tab))
 	{
 		data->map->tab_cp[i] = ft_strdup(data->map->tab[i]);
 		if (data->map->tab_cp[i] == NULL)
-			throw_error(data, "malloc failure");
+			throw_error(data, "Malloc failure");
 		i++;
 	}
 	data->map->tab_cp[i] = 0;

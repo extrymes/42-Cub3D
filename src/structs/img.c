@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 12:19:24 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/14 17:21:40 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/21 16:59:45 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_img	*init_img_tab(t_data *data)
 
 	img_tab = malloc(IMG_COUNT * sizeof(t_img));
 	if (!img_tab)
-		throw_error(data, "malloc failure");
+		throw_error(data, "Malloc failure");
 	i = 0;
 	while (i < IMG_COUNT)
 		img_tab[i++] = init_img();
@@ -45,5 +45,5 @@ void	set_img_addr(t_data *data, t_img *img)
 	img->addr = mlx_get_data_addr(img->ptr, &img->bits_per_pixel,
 			&img->line_length, &img->endian);
 	if (!img->addr)
-		throw_error(data, "mlx: cannot get addr");
+		throw_error(data, "Cannot get image addr");
 }

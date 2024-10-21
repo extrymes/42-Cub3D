@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 13:51:36 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/20 18:02:31 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/21 16:59:52 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_keys	*init_keys(t_data *data)
 
 	keys = malloc(sizeof(t_keys));
 	if (!keys)
-		throw_error(data, "malloc failure");
+		throw_error(data, "Malloc failure");
 	keys->key_w = 0;
 	keys->key_s = 0;
 	keys->key_a = 0;

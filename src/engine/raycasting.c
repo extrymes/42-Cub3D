@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 22:23:22 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/21 00:28:35 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/21 16:58:46 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void	hit_wall(t_data *data, t_ray *ray)
 		if (ray->rough_y < 0 || ray->rough_x < 0
 			|| (ray->rough_y >= tablen(data->map->tab))
 			|| (ray->rough_x >= (int)ft_strlen(data->map->tab[ray->rough_y])))
-			return (free(ray), throw_error(data, "ray is out of map"));
+			return (free(ray), throw_error(data, "Ray is out of map"));
 		if (check_wall_hit(ray, data->map->tab))
 			break ;
 	}

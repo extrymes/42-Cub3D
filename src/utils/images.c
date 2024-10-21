@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 09:45:54 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/11 14:04:10 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/21 17:00:09 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,6 @@ static void	create_img(t_data *data, t_img *img, char *filename)
 		img->ptr = mlx_new_image(data->mlx_ptr,
 				data->win_width, data->win_height);
 	if (!img->ptr)
-		throw_error(data, "mlx: cannot create image");
+		throw_error(data, "Cannot create image");
 	set_img_addr(data, img);
 }
