@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 00:03:56 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/21 09:06:50 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/22 16:24:25 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	render_scene(t_data *data)
 {
 	render_background(data);
 	raycasting(data);
+	render_minimap(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 		data->img_tab[RENDERING].ptr, 0, 0);
 }
