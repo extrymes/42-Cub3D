@@ -8,10 +8,10 @@ SRC_UTIL_DIR = utils
 BIN_DIR = bin
 HDR_DIR = includes
 
-ENGINE_FILES = raycasting.c rendering.c minimap.c door.c events.c routine.c moves.c rotates.c mouse.c
+ENGINE_FILES = raycasting.c rendering.c minimap.c minimap_arrow.c door.c events.c routine.c moves.c rotates.c mouse.c weapon.c crosshair.c
 PARS_FILES = map.c parse_design.c parse_utils.c parse_map.c parse_utils2.c
 STRUCT_FILES = data.c map.c img.c player.c ray.c keys.c
-UTIL_FILES = images.c time.c error.c
+UTIL_FILES = window.c images.c time.c exit.c
 
 SRCS = $(addprefix $(SRC_DIR)/,main.c \
 	$(addprefix $(SRC_ENGINE_DIR)/,$(ENGINE_FILES)) \
