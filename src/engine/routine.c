@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:38:59 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/23 19:50:34 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/23 19:50:38 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	routine(t_data *data)
 		render_scene(data, current_time);
 		data->last_frame = current_time;
 	}
-	display_door_message(data, data->map->tab);
 	data->last_tick = current_time;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 10:43:22 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/23 19:52:13 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/23 20:39:58 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,34 +93,4 @@ static int	handle_buttonrelease(int button, int x, int y, t_data *data)
 	if (button == BUTTON_LEFT)
 		data->keys->button_left = 0;
 	return (0);
-}
-
-static int	handle_mouse_move(int x, int y, t_data *data)
-{
-	int		win_center_x;
-	int		win_center_y;
-	int		delta_x;
-	double	elapsed_time;
-	double	rotate_speed;
-
-	(void)y;
-	if (!data->mouse_tracked)
-		return (0);
-	win_center_x = data->win_width / 2;
-	win_center_y = data->win_height / 2;
-	delta_x = x - win_center_x;
-	elapsed_time = get_current_time() - data->last_tick;
-	rotate_speed = MOUSE_SENSITIVITY * (elapsed_time / 1000.0);
-	if (delta_x < 0)
-		rotate_left(data->player, abs(delta_x) * rotate_speed);
-	else if (delta_x > 0)
-		rotate_right(data->player, delta_x * rotate_speed);
-	MOUSE_MOVE(data->mlx_ptr, data->win_ptr, win_center_x, win_center_y);
-	return (0);
-}
-
-static int	handle_destroy(t_data *data)
-{
-	clear_data(data);
-	return (exit(0), 0);
 }

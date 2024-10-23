@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 22:23:22 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/21 16:58:46 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/23 09:10:43 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void		hit_wall(t_data *data, t_ray *ray);
 static int		check_wall_hit(t_ray *ray, char **map);
 static int		get_wall_face(t_ray *ray);
 
-void	raycasting(t_data *data)
+void	raycast_map(t_data *data)
 {
 	t_ray	*ray;
 	double	project_plane;

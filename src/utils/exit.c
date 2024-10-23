@@ -1,16 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 10:49:05 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/21 14:23:57 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/23 13:59:43 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	handle_destroy(t_data *data)
+{
+	clear_data(data);
+	return (exit(EXIT_SUCCESS), 0);
+}
 
 void	throw_error(t_data *data, char *err)
 {

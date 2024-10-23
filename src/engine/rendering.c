@@ -18,12 +18,13 @@ static int	get_column(t_ray *ray, t_img *texture);
 void	render_scene(t_data *data, double current_time)
 {
 	render_background(data);
-	raycasting(data);
+	raycast_map(data);
 	render_minimap(data);
 	render_crosshair(data);
 	render_weapon(data, get_weapon_img(data, current_time), current_time);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 		data->img_tab[RENDERING].ptr, 0, 0);
+	display_door_message(data, data->map->tab);
 }
 
 void	render_column(t_data *data, t_ray *ray, int x)
