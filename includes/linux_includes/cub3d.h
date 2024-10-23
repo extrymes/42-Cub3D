@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 09:09:34 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/21 21:17:38 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/23 14:25:41 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,28 @@
 # include <sys/time.h>
 # include <fcntl.h>
 # define WIN_TITLE "42-Cub3D"
-# define IMG_COUNT 8
+# define IMG_COUNT 16
 # define WALL_NO 0
 # define WALL_SO 1
 # define WALL_EA 2
 # define WALL_WE 3
 # define DOOR 4
 # define ARROW 5
-# define BACKGROUND 6
-# define RENDERING 7
+# define WEAPON 6
+# define WEAPON_SHOOT 7
+# define WEAPON_RELOAD 9
+# define BACKGROUND 14
+# define RENDERING 15
 # define IMG_DOOR "textures/door.xpm"
 # define IMG_ARROW "textures/arrow.xpm"
+# define IMG_WEAPON "textures/weapon.xpm"
+# define IMG_WEAPON_SHOOT_0 "textures/weapon_shoot0.xpm"
+# define IMG_WEAPON_SHOOT_1 "textures/weapon_shoot1.xpm"
+# define IMG_WEAPON_RELOAD_0 "textures/weapon_reload0.xpm"
+# define IMG_WEAPON_RELOAD_1 "textures/weapon_reload1.xpm"
+# define IMG_WEAPON_RELOAD_2 "textures/weapon_reload2.xpm"
+# define IMG_WEAPON_RELOAD_3 "textures/weapon_reload3.xpm"
+# define IMG_WEAPON_RELOAD_4 "textures/weapon_reload4.xpm"
 # define MINIMAP_MARGIN_HEIGHT 40
 # define MINIMAP_MARGIN_WIDTH 40
 # define MINIMAP_SQUARE_SIZE 20
@@ -43,24 +54,34 @@
 # define MINIMAP_COLOR_DOOR_OPEN 0x41B54F
 # define MINIMAP_COLOR_DOOR_CLOSE 0xB54141
 # define FOV 90.0
-# define FPS 120.0
+# define FPS 240.0
 # define VERTICAL_SLICING 2
 # define MOVE_SPEED 3.0
 # define ROTATE_SPEED 2.5
-# define MOUSE_SENSITIVITY 0.02
+# define MOUSE_SPEED 0.025
+# define WEAPON_STATUS_NORMAL 0
+# define WEAPON_STATUS_SHOOTING 1
+# define WEAPON_STATUS_RELOADING 2
+# define WEAPON_CAPACITY 5
 # define KEY_ESC XK_Escape
 # define KEY_CTRL XK_Control_L
 # define KEY_E XK_e
+# define KEY_R XK_r
 # define KEY_W XK_w
 # define KEY_S XK_s
 # define KEY_A XK_a
 # define KEY_D XK_d
 # define KEY_LEFT XK_Left
 # define KEY_RIGHT XK_Right
+# define BUTTON_LEFT Button1
 # define KEYPRESS KeyPress
 # define KEYPRESSMASK KeyPressMask
 # define KEYRELEASE KeyRelease
 # define KEYRELEASEMASK KeyReleaseMask
+# define BUTTONPRESS ButtonPress
+# define BUTTONPRESSMASK ButtonPressMask
+# define BUTTONRELEASE ButtonRelease
+# define BUTTONRELEASEMASK ButtonReleaseMask
 # define MOTIONNOTIFY MotionNotify
 # define POINTERMOTIONMASK PointerMotionMask
 # define DESTROYNOTIFY DestroyNotify
@@ -89,6 +110,9 @@ struct s_data
 	double		last_frame;
 	double		last_tick;
 	int			mouse_tracked;
+	int			weapon_status;
+	int			weapon_capacity;
+	int			minimap_size;
 	size_t		background_size;
 	t_map		*map;
 	t_img		*img_tab;
@@ -159,14 +183,15 @@ struct s_keys
 	int	key_d;
 	int	key_left;
 	int	key_right;
+	int	button_left;
 };
 
 // --- Engine ---
 // raycasting.c
-void		raycasting(t_data *data);
+void		raycast_map(t_data *data);
 
 // rendering.c
-void		render_scene(t_data *data);
+void		render_scene(t_data *data, double current_time);
 void		render_column(t_data *data, t_ray *ray, int x);
 void		render_background(t_data *data);
 
@@ -179,6 +204,9 @@ int			is_valid_move(char **map, double pos_x, double pos_y);
 
 // minimap.c
 void		render_minimap(t_data *data);
+
+// minimap_arrow.c
+void		render_arrow(t_data *data);
 
 // door.c
 void		toggle_nearest_door(t_data *data, char **map);
@@ -195,9 +223,19 @@ void		rotate_left(t_player *player, double rotate_speed);
 void		rotate_right(t_player *player, double rotate_speed);
 
 // mouse.c
+int			handle_mouse_move(int x, int y, t_data *data);
 void		track_mouse(t_data *data);
 void		untrack_mouse(t_data *data);
 void		toggle_mouse_tracking(t_data *data);
+
+// weapon.c
+void		render_weapon(t_data *data, t_img *weapon, double current_time);
+t_img		*get_weapon_img(t_data *data, double current_time);
+void		shoot_with_weapon(t_data *data);
+void		reload_weapon(t_data *data);
+
+// crosshair.c
+void		render_crosshair(t_data *data);
 
 // --- Parsing ---
 // map.c
@@ -246,6 +284,9 @@ t_ray		*init_ray(t_data *data, double plane_x, double plane_y, int x);
 t_keys		*init_keys(t_data *data);
 
 // --- Utils ---
+// window.c
+void		create_window(t_data *data);
+
 // images.c
 void		create_images(t_data *data);
 void		draw_background(t_data *data);
@@ -255,7 +296,8 @@ void		destroy_images(t_data *data, t_img *img_tab);
 // time.c
 double		get_current_time(void);
 
-// error.c
+// exit.c
+int			handle_destroy(t_data *data);
 void		throw_error(t_data *data, char *err);
 
 #endif
