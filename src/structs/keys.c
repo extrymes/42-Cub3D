@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 13:51:36 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/21 16:59:52 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/22 20:15:09 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ t_keys	*init_keys(t_data *data)
 	keys->key_d = 0;
 	keys->key_left = 0;
 	keys->key_right = 0;
+	keys->button_left = 0;
 	return (keys);
 }
