@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 11:40:36 by msimao            #+#    #+#             */
-/*   Updated: 2024/10/21 14:30:00 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/23 14:44:27 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ static void	flood_fill(t_map *map, int x, int y, t_data *data)
 {
 	if ((int)ft_strlen(map->tab_cp[y]) <= 1)
 		error_map("Invalid map", data);
-	if (y < 0 || x < 0 || map->tab_cp[y][x] == ' '
-		|| y >= tablen(map->tab_cp) || x >= (int)ft_strlen(map->tab_cp[y]))
+	if (y < 0 || x < 0 || y >= tablen(map->tab_cp)
+		|| x >= (int)ft_strlen(map->tab_cp[y]) || map->tab_cp[y][x] == ' ')
 		error_map("Invalid map", data);
 	if (map->tab_cp[y][x] == '0' || map->tab_cp[y][x] == 'D')
 	{
