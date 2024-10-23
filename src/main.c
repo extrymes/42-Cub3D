@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 09:09:13 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/21 00:56:27 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/23 14:25:52 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int ac, char **av)
 	check_map(av[1], &data);
 	create_images(&data);
 	draw_background(&data);
-	render_scene(&data);
+	render_scene(&data, get_current_time());
 	SET_FONT(data.mlx_ptr, data.win_ptr, "10x20");
 	track_mouse(&data);
 	handle_events(&data);

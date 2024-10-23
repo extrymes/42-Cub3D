@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 00:03:56 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/22 21:05:23 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/23 13:09:55 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 static int	get_color(t_data *data, t_ray *ray, int col_height, int y);
 static int	get_column(t_ray *ray, t_img *texture);
 
-void	render_scene(t_data *data)
+void	render_scene(t_data *data, double current_time)
 {
 	render_background(data);
 	raycasting(data);
 	render_minimap(data);
 	render_crosshair(data);
+	render_weapon(data, get_weapon_img(data, current_time), current_time);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 		data->img_tab[RENDERING].ptr, 0, 0);
 }

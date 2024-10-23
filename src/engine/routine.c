@@ -6,13 +6,14 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:38:59 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/21 16:32:18 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/23 19:50:34 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	handle_moves(t_data *data, double elapsed_time);
+static void		handle_moves(t_data *data, double elapsed_time);
+static void		handle_shoot(t_data *data);
 
 int	routine(t_data *data)
 {
@@ -20,9 +21,10 @@ int	routine(t_data *data)
 
 	current_time = get_current_time();
 	handle_moves(data, current_time - data->last_tick);
+	handle_shoot(data);
 	if ((current_time - data->last_frame) > (1000.0 / FPS))
 	{
-		render_scene(data);
+		render_scene(data, current_time);
 		data->last_frame = current_time;
 	}
 	display_door_message(data, data->map->tab);
@@ -54,6 +56,12 @@ static void	handle_moves(t_data *data, double elapsed_time)
 		rotate_left(data->player, rotate_speed);
 	if (data->keys->key_right)
 		rotate_right(data->player, rotate_speed);
+}
+
+static void	handle_shoot(t_data *data)
+{
+	if (data->keys->button_left)
+		shoot_with_weapon(data);
 }
 
 int	is_valid_move(char **map, double pos_x, double pos_y)
