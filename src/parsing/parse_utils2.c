@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:37:04 by msimao            #+#    #+#             */
-/*   Updated: 2024/10/21 13:50:45 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/24 11:29:02 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ int	rgb_toi(char *str)
 	char	**rgb;
 
 	rgb = ft_split(str, ',');
-	nb1 = count_digit(rgb[0]);
-	if (nb1 < 0)
-		return (free_split(rgb), -1);
-	nb2 = count_digit(rgb[1]);
-	if (nb2 < 0)
-		return (free_split(rgb), -1);
-	nb3 = count_digit(rgb[2]);
-	if (nb3 < 0)
+	if (!rgb)
+		return (-1);
+	if (!rgb[0] || !rgb[1] || !rgb[2])
 		return (free_split(rgb), -1);
 	if (rgb[3])
+		return (free_split(rgb), -1);
+	nb1 = count_digit(rgb[0]);
+	nb2 = count_digit(rgb[1]);
+	nb3 = count_digit(rgb[2]);
+	if (nb1 < 0 || nb2 < 0 || nb3 < 0)
 		return (free_split(rgb), -1);
 	free_split(rgb);
 	return ((nb1 << 16) + (nb2 << 8) + nb3);

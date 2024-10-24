@@ -67,13 +67,13 @@ static void	save_wall(char *str, t_data *data, char **filename)
 
 	i = 0;
 	if (*filename)
-		error_gnl("unexpected line", str, data);
+		error_gnl("Unexpected line", str, data);
 	while (ft_isspace(str[i]))
 		i++;
 	if ((str[i] && !ft_isalpha(str[i++])) || (str[i] && !ft_isalpha(str[i++])))
-		error_gnl("unexpected character", str, data);
+		error_gnl("Unexpected character", str, data);
 	if (!str[i] || (str[i] && !ft_isspace(str[i])))
-		error_gnl("unexpected character", str, data);
+		error_gnl("Unexpected character", str, data);
 	while (str[i] && ft_isspace(str[i]))
 		i++;
 	*filename = ft_strdup(str + i);

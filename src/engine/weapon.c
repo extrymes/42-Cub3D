@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 10:51:09 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/23 19:47:17 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/24 11:32:57 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	render_weapon(t_data *data, t_img *weapon, double current_time)
 	int	i;
 	int	color;
 
-	(void)current_time;
 	x = data->win_width - weapon->width;
 	y = data->win_height - (weapon->height - get_weapon_move(current_time));
 	j = 0;
