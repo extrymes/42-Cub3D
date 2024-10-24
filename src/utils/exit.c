@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 10:49:05 by sabras            #+#    #+#             */
-/*   Updated: 2024/10/23 13:59:43 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/24 11:31:51 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	handle_destroy(t_data *data)
 
 void	throw_error(t_data *data, char *err)
 {
-	close(data->map->fd);
+	if (data->map->fd > 0)
+		close(data->map->fd);
 	ft_putstr_fd(RED "Error\n", 2);
 	ft_putstr_fd(err, 2);
 	ft_putstr_fd("\n" RESET, 2);

@@ -6,7 +6,7 @@
 /*   By: sabras <sabras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:32:56 by msimao            #+#    #+#             */
-/*   Updated: 2024/10/21 13:50:02 by sabras           ###   ########.fr       */
+/*   Updated: 2024/10/24 11:29:14 by sabras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,15 @@ void	check_map(char *file, t_data *data)
 static void	check_file(char *file, t_data *data)
 {
 	char	*extension;
+	int		fd;
 
 	extension = ft_strrchr(file, '.');
 	if (!extension || ft_strcmp(extension, ".cub"))
 		throw_error(data, "The file extension must be '.cub'");
-	if (open(file, O_DIRECTORY) > 0)
+	fd = open(file, O_DIRECTORY);
+	if (fd > 0)
+	{
+		close(fd);
 		throw_error(data, "Is a directory");
+	}
 }
