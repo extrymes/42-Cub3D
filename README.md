@@ -15,7 +15,7 @@ cd 42-Cub3D
 2. Compile and launch the program
 ```bash
 make
-./cub3d <maps/map.cub>
+./cub3D <maps/map.cub>
 ```
 The map file must be in `.cub` format, as indicated in the cub3d specifications.
 
@@ -41,7 +41,7 @@ Maps must conform to cub3d specifications, which are the following:
 	- WE ./path/to/the/west/texture
 	- EA ./path/to/the/east/texture
 	- F 70,70,70 (floor color)
-	- C 80,180,220 (ceiling color)
+	- C 10,50,90 (ceiling color)
 
 The `maps` folder already contains some maps but you can create your own!
 
